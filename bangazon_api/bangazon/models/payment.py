@@ -1,6 +1,6 @@
 """Module for for Payment"""
 from django.db import models
-# from .customer import Customer
+from .customer import Customer
 
 class Payment(models.Model):
     """Model class for Payment"""
