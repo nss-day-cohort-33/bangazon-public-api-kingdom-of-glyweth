@@ -34,7 +34,7 @@
     },
     {
     "model": "bangazon.payment",
-    "pk": 3,
+    "pk": 4,
     "fields": {
       "merchant_name": "VISA",
       "account_number": "12365646878941658498465165-0051642",
