@@ -54,11 +54,14 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+<<<<<<< HEAD
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
     'http://127.0.0.1:8080'
 )
 
+=======
+>>>>>>> 87ad2f6d0bfff1171442f590773fac6a1f59e188
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,6 +72,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# This is new
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+    'http://127.0.0.1:8080'
+)
 
 ROOT_URLCONF = 'bangazon_api.urls'
 
