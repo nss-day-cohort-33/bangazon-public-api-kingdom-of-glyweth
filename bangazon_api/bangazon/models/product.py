@@ -10,7 +10,7 @@ class Product(models.Model):
     quantity_available = models.IntegerField()
     quantity_sold = models.IntegerField()
     date_created = models.DateField(null=True)
-    image = models.ImageField(upload_to = 'path/to/folder/containing/pictures', default = 'refer/file/path/to/a/default/image')
+    image = models.ImageField(upload_to = None)
 
     class Meta:
         verbose_name = ("product")
