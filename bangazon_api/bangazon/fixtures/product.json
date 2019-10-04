@@ -8,7 +8,7 @@
           "price": 12.48,
           "description": "Lovely book by Stephen King, also includes several bones with order",
           "product_category_id": 1,
-          "quantity": 1,
+          "quantity_available": 1,
           "quantity_sold": 0,
           "date_created": "2019-10-03",
           "image": null
@@ -23,7 +23,7 @@
           "price": 198.01,
           "description": "Book about lies, caution will turn you into a liar",
           "product_category_id": 1,
-          "quantity": 10,
+          "quantity_available": 10,
           "quantity_sold": 1,
           "date_created": "2019-09-03",
           "image": null
@@ -38,7 +38,7 @@
           "price": 398.01,
           "description": "Big boots for boys and girls",
           "product_category_id": 2,
-          "quantity": 5,
+          "quantity_available": 5,
           "quantity_sold": 0,
           "date_created": "2019-10-01",
           "image": null
@@ -53,7 +53,7 @@
           "price": 8.75,
           "description": "A super sweet beanie, for the hipster in you.  Definintely wearable in summer",
           "product_category_id": 2,
-          "quantity": 99,
+          "quantity_available": 99,
           "quantity_sold": 0,
           "date_created": "2019-10-01",
           "image": null

@@ -8,7 +8,7 @@ class Payment(models.Model):
     account_number = models.CharField(max_length=25)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     creation_date = models.DateField(null=True, blank=True, default=None)
-    expiration_date = models.models.DateField(null=True, blank=True, default=None)
+    expiration_date = models.DateField(null=True, blank=True, default=None)
 
     class Meta:
         verbose_name = ("payment")
