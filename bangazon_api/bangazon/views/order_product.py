@@ -20,7 +20,8 @@ class Order_Products_Serializer(serializers.HyperlinkedModelSerializer):
             view_name='order_product',
             lookup_field='id'
         )
-        fields = ('id', 'product_id', 'order_id', 'review')
+        fields = ('id', 'product_id', 'order_id', 'review',)
+        depth = 1
         
         
 class Order_Products_2(ViewSet):
@@ -52,9 +53,9 @@ class Order_Products_2(ViewSet):
             Response -- JSON serialized order product instance
         """
         try:
-            area = Order_Products.objects.get(pk=pk)
+            order_product = Order_Products.objects.get(pk=pk)
             serializer = Order_Products_Serializer(
-                area, context={'request': request}
+                order_product, context={'request': request}
             )
             return Response(serializer.data)
         except Exception as ex:
@@ -94,10 +95,10 @@ class Order_Products_2(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
     def list(self, request):
-        """Handle GET requests to park areas resource
+        """Handle GET requests to order product resource
 
         Returns:
-            Response -- JSON serialized list of park areas
+            Response -- JSON serialized list of order products
         """
         order_products = Order_Products.objects.all()
         serializer = Order_Products_Serializer(
