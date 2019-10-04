@@ -1,0 +1,30 @@
+[
+    {
+        "model": "bangazon.product_category",
+        "pk": 1,
+        "fields": {
+          "name": "Books"
+            }
+    },
+    {
+        "model": "bangazon.product_category",
+        "pk": 2,
+        "fields": {
+          "name": "Clothing"
+            }
+    },
+    {
+        "model": "bangazon.product_category",
+        "pk": 3,
+        "fields": {
+          "name": "Cleaning"
+            }
+    },
+    {
+        "model": "bangazon.product_category",
+        "pk": 4,
+        "fields": {
+          "name": "Instruments"
+            }
+    }
+]
