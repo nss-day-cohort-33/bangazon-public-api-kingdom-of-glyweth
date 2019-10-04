@@ -1,0 +1,11 @@
+[
+    {
+        "model": "bangazon.order_products",
+        "pk": 1,
+        "fields": {
+            "customer_id": 1,
+            "payment_id": 1,
+            "order_placed date": "2019-10-03"
+        }
+    }
+]
