@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "merchant_name": "VISA",
-      "account_number": "12365646878941658498465165-6661651",
+      "account_number": "12365646878-6661341",
       "customer_id": 1,
       "creation_date": "2019-10-03",
       "expiration_date": "2021-10-03"
@@ -15,7 +15,7 @@
     "pk": 2,
     "fields": {
       "merchant_name": "Mastercard",
-      "account_number": "1236564687-0051651",
+      "account_number": "1236564687-0035651",
       "customer_id": 1,
       "creation_date": "2019-10-03",
       "expiration_date": "2018-10-03"
