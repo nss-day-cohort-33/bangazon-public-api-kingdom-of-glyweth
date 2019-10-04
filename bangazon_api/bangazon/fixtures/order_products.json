@@ -1,0 +1,20 @@
+[
+    {
+        "model": "bangazon.order_products",
+        "pk": 1,
+        "fields": {
+            "order_id": 1,
+            "product_id": 1,
+            "review": null
+        }
+    },
+    {
+        "model": "bangazon.order_products",
+        "pk": 2,
+        "fields": {
+            "order_id": 2,
+            "product_id": 3,
+            "review": null
+        }
+    }
+]
