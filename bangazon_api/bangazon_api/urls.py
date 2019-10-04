@@ -18,10 +18,13 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from bangazon.models import *
+from bangazon.views import register_user, login_user
+from bangazon.views import Customers
 from bangazon.views import Order_Products_2
 from bangazon.views import Orders
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'customers', Customers, 'customer')
 router.register(r'order_product', Order_Products_2, 'order_product')
 router.register(r'order', Orders, 'order')
 
@@ -29,6 +32,8 @@ router.register(r'order', Orders, 'order')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^register$', register_user),
+    url(r'^login$', login_user),
     url(r'^api-token-auth/', obtain_auth_token),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
