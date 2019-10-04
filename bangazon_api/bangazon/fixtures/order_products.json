@@ -5,7 +5,7 @@
         "fields": {
             "order_id": 1,
             "product_id": 1,
-            "review": null
+            "review": ""
         }
     },
     {
@@ -14,7 +14,7 @@
         "fields": {
             "order_id": 2,
             "product_id": 3,
-            "review": null
+            "review": ""
         }
     }
 ]
