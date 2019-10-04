@@ -1,3 +1,4 @@
+"""Model for order"""
 from django.db import models
 from .customer import Customer
 from .payment import Payment
