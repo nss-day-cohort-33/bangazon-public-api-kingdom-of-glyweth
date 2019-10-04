@@ -25,6 +25,8 @@ class customer_serializer(serializers.HyperlinkedModelSerializer):
 class Customers(ViewSet):
     """Customers for the bangazon app"""
 
+    """Create customer is accomplished in register view"""
+
     # def create(self, request):
     #     """Handles Post Operations - Ben"""
 
@@ -82,7 +84,8 @@ class Customers(ViewSet):
     def list(self, request):
         """Handles the get all request for the customers - Ben"""
 
-        customer = Customer.objects.all()
+        user = Customer.objects.get(user=request.auth.user)
+        customer = Customer.objects.filter(user)
         serializer = customer_serializer(
             customer, many=True, context={'request': request}
         )
