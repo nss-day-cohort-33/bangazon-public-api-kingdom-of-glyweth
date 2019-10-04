@@ -18,8 +18,11 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from bangazon.models import *
+from bangazon.views import Order_Products_2
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'order_product', Order_Products_2, 'order_product')
+
 
 urlpatterns = [
     url(r'^', include(router.urls)),
