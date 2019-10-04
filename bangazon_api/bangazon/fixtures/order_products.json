@@ -3,9 +3,18 @@
         "model": "bangazon.order_products",
         "pk": 1,
         "fields": {
-            "customer_id": 1,
-            "payment_id": 1,
-            "order_placed date": "2019-10-03"
+            "order_id": 1,
+            "product_id": 1,
+            "review": null
+        }
+    },
+    {
+        "model": "bangazon.order_products",
+        "pk": 1,
+        "fields": {
+            "order_id": 1,
+            "product_id": 1,
+            "review": null
         }
     }
 ]
