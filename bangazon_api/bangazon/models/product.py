@@ -1,12 +1,14 @@
 from django.db import models
+from .product_category import Product_Category
+from .customer import Customer
 
 class Product(models.Model):
 
     name = models.CharField(max_length = 50)
-    customer_id = models.ForeignKey("Customer", on_delete = models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
     price = models.DecimalField(max_digits = 100, decimal_places = 2)
     description = models.CharField(max_length = 300)
-    product_category_id = models.ForeignKey("Product_Category", on_delete = models.CASCADE)
+    product_category = models.ForeignKey(Product_Category, on_delete = models.CASCADE)
     quantity_available = models.IntegerField()
     quantity_sold = models.IntegerField()
     date_created = models.DateField(null=True)
