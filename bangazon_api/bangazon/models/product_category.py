@@ -1,7 +1,7 @@
 from django.db import models
 
 class Product_Category(models.Model):
-    """Model for order"""
+    """Model for product category"""
 
     name = models.CharField(max_length=100)
 
