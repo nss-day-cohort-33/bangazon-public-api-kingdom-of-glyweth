@@ -3,43 +3,30 @@
         "model": "bangazon.customer",
         "pk": 1,
         "fields": {
-          "user_id": 1,
-          "first_name": "John",
-          "last_name": "Jacobs",
-          "email": "jj@aol.com",
+          "user_id": 2,
           "phone_number": "555-555-1234",
           "address": "1234 ideclare",
-          "city": "Nashville",
-          "signup_date": "2019-10-03",
-          "is_active": true
+          "city": "Nashville"
         }
     },
     {
         "model": "bangazon.customer",
         "pk": 2,
         "fields": {
-          "first_name": "Old",
-          "last_name": "Man",
-          "email": "om@aol.com",
+          "user_id": 3,
           "phone_number": "555-555-3456",
           "address": "12 north loop",
-          "city": "Nashville",
-          "signup_date": "2019-09-03",
-          "is_active": false
+          "city": "Nashville"
         }
     },
     {
         "model": "bangazon.customer",
         "pk": 3,
         "fields": {
-          "first_name": "Susan",
-          "last_name": "Jacobs",
-          "email": "JS@aol.com",
+          "user_id": 4,
           "phone_number": "555-555-2345",
           "address": "1234 ideclare",
-          "city": "Nashville",
-          "signup_date": "2019-10-01",
-          "is_active": true
+          "city": "Nashville"
         }
     }
 ]
