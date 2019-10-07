@@ -52,8 +52,8 @@ class Payments(ViewSet):
             Response -- JSON serialized customer instance
         """
         try:
-            customer = Customer.objects.get(pk=pk)
-            serializer = PaymentSerializer(customer, context={'request': request})
+            payment = Payment.objects.get(pk=pk)
+            serializer = PaymentSerializer(payment, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
