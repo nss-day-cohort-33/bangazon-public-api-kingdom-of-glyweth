@@ -17,7 +17,7 @@ class Product_Serializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'name', 'customer', 'price', 'description', 'product_category', 'quantity_available', 'quantity_sold', 'date_created', 'image')
-        depth = 1
+        # depth = 1
     
 class Products(ViewSet):
     """Products for Bangazon Api"""
@@ -51,9 +51,8 @@ class Products(ViewSet):
             Response -- JSON serialized product instance
         """
         try:
-            product = Product.objects.get(pk=pk)
-            customer = Customer.objects.get(user=request.auth.user)
-            serializer = Product_Serializer(product, context={'request': request})
+            customer = Customer.objects.get(pk=pk)
+            serializer = Product_Serializer(customer, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
