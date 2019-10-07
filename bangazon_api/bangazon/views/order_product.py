@@ -7,7 +7,6 @@ from rest_framework import serializers
 from rest_framework import status
 from bangazon.models import Order_Products, Product, Order
 
-
 class Order_Products_Serializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for order products
 
