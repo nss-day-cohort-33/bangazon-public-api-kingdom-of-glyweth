@@ -52,8 +52,8 @@ class Payments(ViewSet):
             Response -- JSON serialized customer instance
         """
         try:
-            customer = Customer.objects.get(pk=pk)
-            serializer = PaymentSerializer(customer, context={'request': request})
+            payment = Payment.objects.get(pk=pk)
+            serializer = PaymentSerializer(payment, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -64,7 +64,7 @@ class Payments(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        payment = payment.objects.get(pk=pk)
+        payment = Payment.objects.get(pk=pk)
         customer = Customer.objects.get(pk=request.data["customer_id"])
         payment.merchant_name = request.data["merchant_name"]
         payment.account_number = request.data["account_number"]
