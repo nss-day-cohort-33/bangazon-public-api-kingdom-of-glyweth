@@ -64,7 +64,7 @@ class Payments(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        payment = payment.objects.get(pk=pk)
+        payment = Payment.objects.get(pk=pk)
         customer = Customer.objects.get(pk=request.data["customer_id"])
         payment.merchant_name = request.data["merchant_name"]
         payment.account_number = request.data["account_number"]
