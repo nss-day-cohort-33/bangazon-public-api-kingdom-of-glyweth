@@ -52,6 +52,7 @@ class Products(ViewSet):
         """
         try:
             product = Product.objects.get(pk=pk)
+            customer = Customer.objects.get(user=request.auth.user)
             serializer = Product_Serializer(product, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
