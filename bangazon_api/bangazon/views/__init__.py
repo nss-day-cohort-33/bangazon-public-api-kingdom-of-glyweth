@@ -1,3 +1,4 @@
+from .product import Products
 from .payment import Payments
 from .order import Orders
 from .order_product import  Order_Products_2
