@@ -51,8 +51,8 @@ class Products(ViewSet):
             Response -- JSON serialized product instance
         """
         try:
-            customer = Customer.objects.get(pk=pk)
-            serializer = Product_Serializer(customer, context={'request': request})
+            product = Product.objects.get(pk=pk)
+            serializer = Product_Serializer(product, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
