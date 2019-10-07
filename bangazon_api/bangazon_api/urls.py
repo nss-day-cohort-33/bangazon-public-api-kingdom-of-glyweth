@@ -22,13 +22,14 @@ from bangazon.views import Payments
 from bangazon.views import register_user, login_user
 from bangazon.views import Customers
 from bangazon.views import Order_Products_2
-from bangazon.views import Orders
+from bangazon.views import Orders, Product_Categories
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'payment', Payments, 'payment')
 router.register(r'customers', Customers, 'customer')
 router.register(r'order_product', Order_Products_2, 'order_product')
 router.register(r'order', Orders, 'order')
+router.register(r'product_category', Product_Categories, 'product_category')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
