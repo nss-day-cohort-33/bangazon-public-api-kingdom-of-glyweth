@@ -20,7 +20,7 @@ class customer_serializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id','user_id', 'phone_number', 'address', 'city')
-        depth = 1
+        depth = 2
 
 class Customers(ViewSet):
     """Customers for the bangazon app"""
