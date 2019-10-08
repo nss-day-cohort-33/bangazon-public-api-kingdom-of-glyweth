@@ -19,7 +19,7 @@ class customer_serializer(serializers.HyperlinkedModelSerializer):
             view_name='customer',
             lookup_field='id'
         )
-        fields = ('id','phone_number', 'address', 'city')
+        fields = ('id','user_id', 'phone_number', 'address', 'city')
         depth = 1
 
 class Customers(ViewSet):
@@ -79,8 +79,8 @@ class Customers(ViewSet):
     def list(self, request):
         """Handles the get all request for the customers - Ben"""
 
-        user = Customer.objects.get(user=request.auth.user)
-        customer = Customer.objects.filter(user)
+        customer = Customer.objects.all()
+
         serializer = customer_serializer(
             customer, many=True, context={'request': request}
         )
