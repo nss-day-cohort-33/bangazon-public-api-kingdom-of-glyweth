@@ -105,7 +105,8 @@ class Payments(ViewSet):
         #     payment, many=True, context={'request': request})
         # return Response(serializer.data)
 
-        payment = Payment.objects.all()
+        customer = Customer.objects.get(user=request.auth.user)
+        payment = Payment.objects.filter(customer=customer)
 
         serializer = PaymentSerializer(
             payment, many=True, context={'request': request})
