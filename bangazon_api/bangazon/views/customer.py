@@ -27,23 +27,18 @@ class Customers(ViewSet):
 
     """Create customer is accomplished in register view"""
 
-    # def create(self, request):
-    #     """Handles Post Operations - Ben"""
+    def create(self, request):
+        """Handles Post Operations - Ben"""
 
-    #     new_customer = Customer()
-    #     new_customer.first_name = request.data("first_name")
-    #     new_customer.last_name = request.data("last_name")
-    #     new_customer.email = request.data("email")
-    #     new_customer.phone_number = request.data("phone_number")
-    #     new_customer.address = request.data("address")
-    #     new_customer.city = request.data("city")
-    #     new_customer.signup_date = request.data("signup_date")
-    #     new_customer.is_active = True
-    #     new_customer.save()
+        new_customer = Customer()
+        new_customer.phone_number = request.data["phone_number"]
+        new_customer.address = request.data["address"]
+        new_customer.city = request.data["city"]
+        new_customer.save()
 
-    #     serializer = customer_serializer(new_customer, context={'request': request})
+        serializer = customer_serializer(new_customer, context={'request': request})
 
-    #     return Response(serializer.data)
+        return Response(serializer.data)
 
 
     def retrieve(self, request, pk=None):
@@ -60,9 +55,9 @@ class Customers(ViewSet):
         """Handles put request for the Customer on their proile - Ben"""
 
         customer = Customer.objects.get(pk)
-        customer.phone_number = request.data("phone_number")
-        customer.address = request.data("address")
-        customer.city = request.data("city")
+        customer.phone_number = request.data["phone_number"]
+        customer.address = request.data["address"]
+        customer.city = request.data["city"]
         customer.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
