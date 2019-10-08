@@ -37,7 +37,7 @@ class Payments(ViewSet):
         new_payment.creation_date = request.data["creation_date"]
         new_payment.expiration_date = request.data["expiration_date"]
 
-        customer = Customer.objects.get(pk=request.data["customer_id"])
+        customer = Customer.objects.get(user=request.auth.user)
         new_payment.customer = customer
         new_payment.save()
 
@@ -111,4 +111,3 @@ class Payments(ViewSet):
             payment, many=True, context={'request': request})
         return Response(serializer.data)
 
-        
