@@ -6,6 +6,7 @@ from rest_framework import serializers
 from rest_framework import status
 from bangazon.models import Order, Customer, Payment
 
+
 class Order_Serializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders
 
@@ -19,6 +20,7 @@ class Order_Serializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'customer_id', 'payment_id', 'order_placed_date')
+
 
 class Orders(ViewSet):
     """Orders for Bangazon"""
@@ -96,12 +98,6 @@ class Orders(ViewSet):
         """
         order = Order.objects.all()
 
-        # Support filtering attractions by area id
-        # area = self.request.query_params.get('area', None)
-        # if area is not None:
-        #     attractions = attractions.filter(area__id=area)
-
         serializer = Order_Serializer(
             order, many=True, context={'request': request})
         return Response(serializer.data)
-
