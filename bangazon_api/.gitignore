@@ -38,7 +38,7 @@ migrations
 
 #db location
 hrapp/views/connections.py
-hrapp/views/connection.py
+bangazon/views/connection.py
 
 #this is a file we might use later
 #gitignore now so it's never traced
