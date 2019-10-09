@@ -11,7 +11,7 @@ class Product(models.Model):
     product_category = models.ForeignKey(Product_Category, on_delete = models.CASCADE)
     quantity_available = models.IntegerField()
     quantity_sold = models.IntegerField()
-    date_created = models.DateField(null = True)
+    date_created = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to = None)
 
     class Meta:
