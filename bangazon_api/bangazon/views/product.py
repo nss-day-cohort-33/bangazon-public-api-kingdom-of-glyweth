@@ -38,7 +38,7 @@ class Products(ViewSet):
         new_product.description = request.data["description"]
         new_product.quantity_available = request.data["quantity_available"]
         new_product.quantity_sold = request.data["quantity_sold"]
-        new_product.image = request.data.get["image", None]
+        # new_product.image = request.data.get["image", None]
         new_product.save()
 
         serializer = Product_Serializer(new_product, context={'request': request})
