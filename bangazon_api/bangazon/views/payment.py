@@ -34,7 +34,6 @@ class Payments(ViewSet):
         new_payment = Payment()
         new_payment.merchant_name = request.data["merchant_name"]
         new_payment.account_number = request.data["account_number"]
-        new_payment.creation_date = request.data["creation_date"]
         new_payment.expiration_date = request.data["expiration_date"]
 
         customer = Customer.objects.get(user=request.auth.user)
