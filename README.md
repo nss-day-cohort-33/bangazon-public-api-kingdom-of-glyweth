@@ -25,30 +25,31 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-1. Clone down this repository and cd into it.
-2. Create your virtual environment:
+1. Please visit https://github.com/nss-day-cohort-33/bangazon-client-application-kingdom-of-glyweth to for client side instructions
+2. Clone down this repository and cd into it.
+3. Create your virtual environment:
 ```
 python -m venv workforceenv
 source ./workforceenv/bin/activate
 ```
-3. Install the app's dependencies:
+4. Install the app's dependencies:
 ```
 pip install -r requirements.txt
 ```
 
-4. Now cd into bangazon_api and build your database from the existing models:
+5. Now cd into bangazon_api and build your database from the existing models:
 ```
 python manage.py makemigrations hrapp
 python manage.py migrate
 ```
 
-5. Populate your database with initial data from fixtures files:
+6. Populate your database with initial data from fixtures files:
 ```
 python manage.py loaddata customers
 python manage.py loaddata {etc..}
 ```
 
-6. Fire up that server!
+7. Fire up that server!
 ```
 python manage.py runserver
 ```
