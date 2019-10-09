@@ -19,8 +19,8 @@ class customer_serializer(serializers.HyperlinkedModelSerializer):
             view_name='customer',
             lookup_field='id'
         )
-        fields = ('id','phone_number', 'address', 'city')
-        depth = 1
+        fields = ('id','user_id', 'phone_number', 'address', 'city')
+        depth = 2
 
 class Customers(ViewSet):
     """Customers for the bangazon app"""
@@ -41,15 +41,6 @@ class Customers(ViewSet):
         return Response(serializer.data)
 
 
-    def retrieve(self, request, pk=None):
-        """ Handles get request for a single customer for the profile page - Ben"""
-
-        try:
-            customer = Customer.objects.get(pk=pk)
-            serializer = customer_serializer(customer, context = {'request': request})
-            return Response(serializer.data)
-        except Exception as ex:
-            return HttpResponseServerError(ex)
 
     def update(self, request, pk=None):
         """Handles put request for the Customer on their proile - Ben"""
@@ -77,11 +68,29 @@ class Customers(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def list(self, request):
-        """Handles the get all request for the customers - Ben"""
+        """ Handles get request for a single customer for the profile page - Ben"""
 
-        user = Customer.objects.get(user=request.auth.user)
-        customer = Customer.objects.filter(user)
+        # try:
+        customer_id = Customer.objects.get(user=request.auth.user)
+        print("customer_id", customer_id)
+
+        customer = Customer.objects.filter(id=customer_id.id)
+
+        # print("customer id", customer)
+
         serializer = customer_serializer(
-            customer, many=True, context={'request': request}
-        )
+            customer, many=True, context = {'request': request})
+
         return Response(serializer.data)
+        # except Exception as ex:
+        #     return HttpResponseServerError(ex)
+
+    # def list(self, request):
+    #     """Handles the get all request for the customers - Ben"""
+
+    #     customer = Customer.objects.all()
+
+    #     serializer = customer_serializer(
+    #         customer, many=True, context={'request': request}
+    #     )
+    #     return Response(serializer.data)
