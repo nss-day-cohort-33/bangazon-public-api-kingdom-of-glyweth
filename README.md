@@ -60,6 +60,7 @@ python manage.py runserver
 * **Melanie Bond**
 * **Berkley Platte**
 * **Ben Parker**
+* **Sydney Noh**
 
 ## Acknowledgments
 
