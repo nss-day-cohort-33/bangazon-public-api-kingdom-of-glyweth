@@ -18,7 +18,7 @@ class Product_Serializer(serializers.HyperlinkedModelSerializer):
         )
         fields = ('id', 'url', 'name', 'customer', 'price', 'description', 'product_category', 'quantity_available', 'quantity_sold', 'date_created', 'image')
         # depth = 1
-    
+
 class Products(ViewSet):
     """Products for Bangazon Api"""
 
@@ -38,8 +38,7 @@ class Products(ViewSet):
         new_product.description = request.data["description"]
         new_product.quantity_available = request.data["quantity_available"]
         new_product.quantity_sold = request.data["quantity_sold"]
-        new_product.date_created = request.data["date_created"]
-        new_product.image = request.data["image"]
+        new_product.image = request.data.get["image", None]
         new_product.save()
 
         serializer = Product_Serializer(new_product, context={'request': request})
@@ -77,7 +76,7 @@ class Products(ViewSet):
         new_product.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
-    
+
     def destroy(self, request, pk=None):
         """Handle DELETE requests for a single product
         Returns:
@@ -91,17 +90,17 @@ class Products(ViewSet):
 
         except Product.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-        
+
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
     def list(self, request):
         """Handle GET requests to product resource
         Returns:
             Response -- JSON serializer list of products
         """
         product = Product.objects.all()
-        
+
         serializer = Product_Serializer(
             product, many=True, context={'request': request})
         return Response(serializer.data)
