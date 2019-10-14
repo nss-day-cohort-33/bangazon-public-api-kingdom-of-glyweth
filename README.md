@@ -45,7 +45,7 @@ python manage.py migrate
 
 6. Populate your database with initial data from fixtures files:
 ```
-python manage.py loaddata customers
+python manage.py loaddata customer
 python manage.py loaddata {etc..}
 ```
 
