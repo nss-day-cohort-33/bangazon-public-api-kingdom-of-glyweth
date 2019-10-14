@@ -43,10 +43,15 @@ python manage.py makemigrations bangazon
 python manage.py migrate
 ```
 
-6. Populate your database with initial data from fixtures files:
+6. Populate your database with initial data from fixtures files in this order:
 ```
+python manage.py loaddata auth_user
 python manage.py loaddata customer
-python manage.py loaddata {etc..}
+python manage.py loaddata payment
+python manage.py loaddata order
+python manage.py loaddata product
+python manage.py loaddata product_category
+python manage.py loaddata order_products
 ```
 
 7. Fire up that server!
