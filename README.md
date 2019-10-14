@@ -29,8 +29,8 @@ These instructions will get you a copy of the project up and running on your loc
 2. Clone down this repository and cd into it.
 3. Create your virtual environment:
 ```
-python -m venv workforceenv
-source ./workforceenv/bin/activate
+python -m venv bangazonenv
+source ./bangazonenv/bin/activate
 ```
 4. Install the app's dependencies:
 ```
