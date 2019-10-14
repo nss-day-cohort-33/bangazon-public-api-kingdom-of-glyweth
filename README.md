@@ -37,7 +37,7 @@ source ./bangazonenv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Now cd into bangazon_api and build your database from the existing models:
+5. **Now cd into bangazon_api** and build your database from the existing models:
 ```
 python manage.py makemigrations bangazon
 python manage.py migrate
