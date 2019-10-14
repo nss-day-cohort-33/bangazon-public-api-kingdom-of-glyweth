@@ -19,7 +19,7 @@ class PaymentSerializer(serializers.HyperlinkedModelSerializer):
             view_name='payment',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'merchant_name', 'account_number', 'customer', 'creation_date', 'expiration_date')
+        fields = ('id', 'url', 'merchant_name', 'account_number', 'creation_date', 'expiration_date', 'customer_id')
 
 
 class Payments(ViewSet):
@@ -99,14 +99,14 @@ class Payments(ViewSet):
             Response -- JSON serialized list of park attractions
         """
 
-        payment = Payment.objects.all()
+        payments = Payment.objects.all()
+        payment = self.request.query_params.get('customer', None)
+        current_user = Customer.objects.get(user=request.auth.user)
 
-        # Support filtering Products by producttype id
-        customer = self.request.query_params.get('payment', None)
-        if customer is not None:
-            payment = payment.filter(payment__id=payment)
+        if payment == "current":
+            payments = payments.filter(customer=current_user)
 
         serializer = PaymentSerializer(
-            payment, many=True, context={'request': request})
+            payments, many=True, context={'request': request})
         return Response(serializer.data)
 
