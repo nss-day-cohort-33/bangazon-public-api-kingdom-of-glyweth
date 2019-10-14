@@ -19,7 +19,7 @@ class customer_serializer(serializers.HyperlinkedModelSerializer):
             view_name='customer',
             lookup_field='id'
         )
-        fields = ('id','user_id', 'phone_number', 'address', 'city')
+        fields = ('id', 'url', 'user_id', 'phone_number', 'address', 'city')
         depth = 2
 
 class Customers(ViewSet):
@@ -70,17 +70,15 @@ class Customers(ViewSet):
     def list(self, request):
         """ Handles get request for a single customer for the profile page - Ben"""
 
+        customers = Customer.objects.all()
+
         # try:
-        customer_id = Customer.objects.get(user=request.auth.user)
-        print("customer_id", customer_id)
-
-        customer = Customer.objects.filter(id=customer_id.id)
-
-        # print("customer id", customer)
+        user_id = self.request.query_params.get('customer', None)
+        if user_id is not None:
+            customers = customers.filter(user__id=user_id)
 
         serializer = customer_serializer(
-            customer, many=True, context = {'request': request})
-
+            customers, many=True, context={'request': request})
         return Response(serializer.data)
         # except Exception as ex:
         #     return HttpResponseServerError(ex)

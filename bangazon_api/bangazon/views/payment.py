@@ -98,14 +98,13 @@ class Payments(ViewSet):
         Returns:
             Response -- JSON serialized list of park attractions
         """
-        # customer = Customer.objects.get(user=request.auth.user)
-        # payment = payment.objects.filter(customer=customer)
-        # serializer = PaymentSerializer(
-        #     payment, many=True, context={'request': request})
-        # return Response(serializer.data)
 
-        customer = Customer.objects.get(user=request.auth.user)
-        payment = Payment.objects.filter(customer=customer)
+        payment = Payment.objects.all()
+
+        # Support filtering Products by producttype id
+        customer = self.request.query_params.get('payment', None)
+        if customer is not None:
+            payment = payment.filter(payment__id=payment)
 
         serializer = PaymentSerializer(
             payment, many=True, context={'request': request})
