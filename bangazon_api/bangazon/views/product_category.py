@@ -88,10 +88,7 @@ class Product_Categories(ViewSet):
         """
         category = Product_Category.objects.all()
 
-        # Support filtering attractions by area id
-        # area = self.request.query_params.get('area', None)
-        # if area is not None:
-        #     attractions = attractions.filter(area__id=area)
+       
 
         serializer = Product_Category_Serializer(
             category, many=True, context={'request': request})
