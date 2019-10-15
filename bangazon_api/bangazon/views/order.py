@@ -70,11 +70,8 @@ class Orders(ViewSet):
             Response -- Empty body with 204 status code
         """
         new_order = Order.objects.get(pk=pk)
-        new_order.order_placed_date = request.data["order_placed_date"]
         payment = Payment.objects.get(pk=request.data["payment_id"])
         new_order.payment = payment
-        customer = Customer.objects.get(pk=request.data["customer_id"])
-        new_order.customer = customer
         new_order.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -104,13 +101,19 @@ class Orders(ViewSet):
             Response -- JSON serialized list of orders
         """
         order = Order.objects.all()
+        orders = Order.objects.all()
+        customer = Customer.objects.get(pk=request.user.id)
 
-        # Support filtering attractions by area id
-        # area = self.request.query_params.get('area', None)
-        # if area is not None:
-        #     attractions = attractions.filter(area__id=area)
-
-        serializer = Order_Serializer(
-            order, many=True, context={'request': request})
+        # Either send back all closed orders for the order history view, or the single open order to display in cart view
+        cart = self.request.query_params.get('cart', None)
+        orders = orders.filter(customer_id=customer)
+        if cart is not None:
+            order = order.filter(payment=None).get()
+            serializer = Order_Serializer(
+                order, many=False, context={'request': request}
+              )
+        else:
+            serializer = Order_Serializer(
+                order, many=True, context={'request': request})
         return Response(serializer.data)
 
