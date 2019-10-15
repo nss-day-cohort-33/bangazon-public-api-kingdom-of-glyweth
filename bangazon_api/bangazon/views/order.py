@@ -33,7 +33,7 @@ class Orders(ViewSet):
         order_item = Order_Products()
         order_item.product = Product.objects.get(pk=request.data["product_id"])
 
-        current_customer = Customer.objects.get(pk=request.data.user.id)
+        current_customer = Customer.objects.get(user=request.auth.user)
         order = Order.objects.filter(customer=current_customer, payment=None)
 
         if order.exists():
