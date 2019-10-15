@@ -5,8 +5,8 @@ from .product import Product
 
 class Order_Products(models.Model):
     """Model class for Order_Products"""
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     review = models.CharField(max_length=300)
 
     class Meta:

@@ -32,6 +32,7 @@ router.register(r'payment', Payments, 'payment')
 router.register(r'customer', Customers, 'customer')
 router.register(r'order_product', Order_Products_2, 'order_product')
 router.register(r'order', Orders, 'order')
+router.register(r'order/cart', Orders, 'order')
 router.register(r'product_category', Product_Categories, 'product_category')
 
 urlpatterns = [

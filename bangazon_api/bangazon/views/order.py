@@ -4,7 +4,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from bangazon.models import Order, Customer, Payment
+from bangazon.models import Order, Customer, Payment, Order_Products, Product
+from .order_product import Order_Products_Serializer
 
 class Order_Serializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for orders
@@ -29,15 +30,23 @@ class Orders(ViewSet):
         Returns:
             Response -- JSON serialized Order instance
         """
-        new_order = Order()
-        new_order.order_placed_date = request.data["order_placed_date"]
-        payment = Payment.objects.get(pk=request.data["payment_id"])
-        new_order.payment = payment
-        customer = Customer.objects.get(user=request.auth.user)
-        new_order.customer = customer
-        new_order.save()
+        order_item = Order_Products()
+        order_item.product = Product.objects.get(pk=request.data["product_id"])
 
-        serializer = Order_Serializer(new_order, context={'request': request})
+        current_customer = Customer.objects.get(user=request.auth.user)
+        order = Order.objects.filter(customer=current_customer, payment=None)
+
+        if order.exists():
+            order_item.order = order[0]
+        else:
+            new_order = Order()
+            new_order.customer = current_customer
+            new_order.save()
+            order_item.order = new_order
+
+        order_item.save()
+
+        serializer = Order_Products_Serializer(order_item, context={'request': request})
 
         return Response(serializer.data)
 
