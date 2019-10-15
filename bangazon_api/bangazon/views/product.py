@@ -114,6 +114,12 @@ class Products(ViewSet):
         if product_category is not None:
             products = products.filter(product_category__id=product_category)
 
+        user = self.request.query_params.get(
+            'user', None)
+        if user is not None:
+            current_user = Customer.objects.get(user=request.auth.user)
+            products = products.filter(customer=current_user)
+
         category = self.request.query_params.get('category', None)
         quantity_available = self.request.query_params.get('quantity_available', None)
         if category is not None:
@@ -122,6 +128,7 @@ class Products(ViewSet):
                 if product.quantity_available > 0:
                     product_list.append(product)
             products = product_list
+            
 
         if quantity_available is not None:
             quantity_available = int(quantity_available)
