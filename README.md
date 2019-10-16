@@ -1,63 +1,67 @@
 ## Bangazon API
 
-This is a Python/Django Web API that makes each resource in Bangazon available to application developers throughout the entire company.
+Built using Python, Django, and the Django REST Framework for serving data to the client via HTTP
 
-The resources currently within the databases are:
+The resources currently within the database are:
 
-1. Products
-1. Product types
-1. Customers
-1. Orders
-1. Payment types
-1. Employees
-1. Computers
-1. Training programs
-1. Departments
+[Insert IMG of ERD]
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+### Requirements
 
 * Computer
-* Visual Studio Code (or equivalent)
+* Bash Terminal
+* Python 3
+* Pip
+* Text editor (Visual Studio Code)
 
 ### Installing
 
-1. Please visit https://github.com/nss-day-cohort-33/bangazon-client-application-kingdom-of-glyweth to for client side instructions
-2. Clone down this repository and cd into it.
-3. Create your virtual environment:
+1. Clone down this repository and cd into it.
+2. Once inside this repository, cd into bangazon_api and open your code editor
+3. Create your virtual environment
 ```
 python -m venv bangazonenv
+```
+* Start virtual environment on Mac
+```
 source ./bangazonenv/bin/activate
 ```
-4. Install the app's dependencies:
+* Start virtual environment on Windows
+```
+source ./bangazonenv/Source/activate
+```
+5. `cd ..` You should be in a directory containing `requirements.txt`
+6. Install the app's dependencies:
 ```
 pip install -r requirements.txt
 ```
 
-5. **Now cd into bangazon_api** and build your database from the existing models:
+7. **Now cd into bangazon_api** and build your database from the existing models and populate the db with date from `fixtures/`:
+
+## `seed_db.sh`
+This is our way of managing database migrations
+
+* Set execute permissions
 ```
-python manage.py makemigrations bangazon
-python manage.py migrate
+chmod -x seed_db.sh
+```
+* Run the script
+```
+./seed_db.sh
 ```
 
-6. Populate your database with initial data from fixtures files in this order:
-```
-python manage.py loaddata auth_user
-python manage.py loaddata customer
-python manage.py loaddata payment
-python manage.py loaddata order
-python manage.py loaddata product
-python manage.py loaddata product_category
-python manage.py loaddata order_products
-```
-
-7. Fire up that server!
+* Fire up that server!
 ```
 python manage.py runserver
 ```
+
+## ...Test in Postman
+
+
 
 ### Authors
 
@@ -66,6 +70,8 @@ python manage.py runserver
 * **Berkley Platte**
 * **Ben Parker**
 * **Sydney Noh**
+* **Misty DeRamus**
+* **Alex Rumsey**
 
 ## Acknowledgments
 
