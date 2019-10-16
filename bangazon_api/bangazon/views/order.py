@@ -107,7 +107,7 @@ class Orders(ViewSet):
         """
         order = Order.objects.all()
         orders = Order.objects.all()
-        customer = Customer.objects.get(pk=request.user.id)
+        customer = Customer.objects.get(user=request.auth.user)
 
         # Either send back all closed orders for the order history view, or the single open order to display in cart view
         cart = self.request.query_params.get('cart', None)

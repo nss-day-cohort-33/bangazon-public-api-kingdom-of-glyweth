@@ -17,7 +17,7 @@ class Product_Serializer(serializers.HyperlinkedModelSerializer):
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'customer', 'customer_id', 'price', 'description', 'product_category_id',
+        fields = ('id', 'url', 'name', 'customer_id', 'price', 'description', 'product_category_id',
                   'quantity_available', 'quantity_sold', 'date_created', 'image' )
         # depth = 1
 
@@ -128,7 +128,7 @@ class Products(ViewSet):
                 if product.quantity_available > 0:
                     product_list.append(product)
             products = product_list
-            
+
 
         if quantity_available is not None:
             quantity_available = int(quantity_available)
