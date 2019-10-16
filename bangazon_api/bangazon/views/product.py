@@ -5,6 +5,7 @@ from rest_framework import serializers
 from rest_framework import status
 from ..models import Product, Customer, Product_Category
 
+
 class Product_Serializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for bangazon products
     Arguments:
@@ -16,8 +17,10 @@ class Product_Serializer(serializers.HyperlinkedModelSerializer):
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'customer', 'price', 'description', 'product_category', 'quantity_available', 'quantity_sold', 'date_created', 'image')
+        fields = ('id', 'url', 'name', 'customer', 'customer_id', 'price', 'description', 'product_category_id',
+                  'quantity_available', 'quantity_sold', 'date_created', 'image' )
         # depth = 1
+
 
 class Products(ViewSet):
     """Products for Bangazon Api"""
@@ -29,7 +32,8 @@ class Products(ViewSet):
         """
         new_product = Product()
         customer = Customer.objects.get(user=request.auth.user)
-        product_category = Product_Category.objects.get(pk=request.data['product_category_id'])
+        product_category = Product_Category.objects.get(
+            pk=request.data['product_category_id'])
 
         new_product.customer = customer
         new_product.product_category = product_category
@@ -41,7 +45,8 @@ class Products(ViewSet):
         # new_product.image = request.data.get["image", None]
         new_product.save()
 
-        serializer = Product_Serializer(new_product, context={'request': request})
+        serializer = Product_Serializer(
+            new_product, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -51,7 +56,8 @@ class Products(ViewSet):
         """
         try:
             product = Product.objects.get(pk=pk)
-            serializer = Product_Serializer(product, context={'request': request})
+            serializer = Product_Serializer(
+                product, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -67,7 +73,8 @@ class Products(ViewSet):
         new_product.customer = customer
         new_product.price = request.data["price"]
         new_product.description = request.data["description"]
-        product_category = Product_Category.objects.get(pk=request.data['product_category_id'])
+        product_category = Product_Category.objects.get(
+            pk=request.data['product_category_id'])
         new_product.product_category = product_category
         new_product.quantity_available = request.data["quantity_available"]
         new_product.quantity_sold = request.data["quantity_sold"]
@@ -99,8 +106,43 @@ class Products(ViewSet):
         Returns:
             Response -- JSON serializer list of products
         """
-        product = Product.objects.all()
+        products = Product.objects.all()
+        product_list = []
+
+        product_category = self.request.query_params.get(
+            'product_category', None)
+        if product_category is not None:
+            products = products.filter(product_category__id=product_category)
+
+        user = self.request.query_params.get(
+            'user', None)
+        if user is not None:
+            current_user = Customer.objects.get(user=request.auth.user)
+            products = products.filter(customer=current_user)
+
+        category = self.request.query_params.get('category', None)
+        quantity_available = self.request.query_params.get('quantity_available', None)
+        if category is not None:
+            products = products.filter(product_category__id=category)
+            for product in products:
+                if product.quantity_available > 0:
+                    product_list.append(product)
+            products = product_list
+            
+
+        if quantity_available is not None:
+            quantity_available = int(quantity_available)
+            length = len(products)
+            new_products = list()
+            count = 0
+            for product in products:
+                count += 1
+                if count - 1 + quantity_available >= length:
+                    new_products.append(product)
+                    if count == length:
+                        products = new_products
+                        break
 
         serializer = Product_Serializer(
-            product, many=True, context={'request': request})
+            products, many=True, context={'request': request})
         return Response(serializer.data)

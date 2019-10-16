@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'bangazon',
+    'safedelete',
 ]
 
 REST_FRAMEWORK = {
@@ -67,8 +68,10 @@ MIDDLEWARE = [
 
 # This is new
 CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
     'http://localhost:3000',
-    'http://127.0.0.1:3000'
+    'http://127.0.0.1:8000',
 )
 
 ROOT_URLCONF = 'bangazon_api.urls'
