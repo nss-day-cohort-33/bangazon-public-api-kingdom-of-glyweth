@@ -1,11 +1,8 @@
 from django.db import models
-from safedelete.models import SafeDeleteModel
-from safedelete.models import SOFT_DELETE
 from .product_category import Product_Category
 from .customer import Customer
 
-class Product(SafeDeleteModel):
-    _safedelete_policy = SOFT_DELETE
+class Product(models.Model):
 
     name = models.CharField(max_length = 50)
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
