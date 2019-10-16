@@ -6,6 +6,7 @@ from rest_framework import serializers
 from rest_framework import status
 from bangazon.models import Order, Customer, Payment, Order_Products, Product
 from .order_product import Order_Products_Serializer
+from .product import Product_Serializer
 
 
 class Order_Serializer(serializers.HyperlinkedModelSerializer):
@@ -14,13 +15,15 @@ class Order_Serializer(serializers.HyperlinkedModelSerializer):
     Arguments:
         serializers
     """
+    line_items = Product_Serializer(many=True)
     class Meta:
         model = Order
         url = serializers.HyperlinkedIdentityField(
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'customer_id', 'payment_id', 'order_placed_date')
+        fields = ('id', 'customer_id', 'payment_id', 'order_placed_date', 'line_items')
+        depth = 1
 
 
 class Orders(ViewSet):
@@ -106,7 +109,21 @@ class Orders(ViewSet):
             Response -- JSON serialized list of orders
         """
         order = Order.objects.all()
+        # customer = Customer.objects.get(pk=request.user.id)
+        customer = Customer.objects.get(user=request.auth.user)
 
-        serializer = Order_Serializer(
-            order, many=True, context={'request': request})
+
+        cart = self.request.query_params.get('cart', None)
+        orders = Order.objects.filter(customer_id=customer)
+
+        if cart is not None:
+            orders = orders.filter(payment=None).get()
+            print("orders filtered", orders)
+            serializer = Order_Serializer(
+                orders, many=False, context={'request': request}
+              )
+        else:
+            serializer = Order_Serializer(
+                orders, many=True, context={'request': request}
+              )
         return Response(serializer.data)

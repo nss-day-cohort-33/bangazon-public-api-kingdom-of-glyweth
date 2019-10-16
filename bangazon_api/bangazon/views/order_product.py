@@ -100,6 +100,17 @@ class Order_Products_2(ViewSet):
             Response -- JSON serialized list of order products
         """
         order_products = Order_Products.objects.all()
+
+        order = self.request.query_params.get('order', None)
+        product = self.request.query_params.get('product', None)
+        payment = self.request.query_params.get('payment', None)
+
+        if product is not None:
+            orderproducts = orderproducts.filter(product__id=product)
+        if order is not None:
+            orderproducts = orderproducts.filter(order_payment=None)
+
+
         serializer = Order_Products_Serializer(
             order_products, many=True, context={'request': request}
         )
