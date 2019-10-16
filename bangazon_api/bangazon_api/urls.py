@@ -34,6 +34,7 @@ router.register(r'order_product', Order_Products_2, 'order_product')
 router.register(r'order', Orders, 'order')
 router.register(r'order/cart', Orders, 'order')
 router.register(r'product_category', Product_Categories, 'product_category')
+router.register(r'product_by_category', Product_Categories, 'product_by_category')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
