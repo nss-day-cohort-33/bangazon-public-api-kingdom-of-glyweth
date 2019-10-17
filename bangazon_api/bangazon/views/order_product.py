@@ -19,7 +19,7 @@ class Order_Products_Serializer(serializers.HyperlinkedModelSerializer):
             view_name='order_product',
             lookup_field='id'
         )
-        fields = ('id', 'product_id', 'order_id', 'review',)
+        fields = ('id', 'product', 'order', 'review',)
         depth = 1
         
         
