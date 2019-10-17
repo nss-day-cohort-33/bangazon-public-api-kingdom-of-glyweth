@@ -145,6 +145,8 @@ class Products(ViewSet):
                     
         products = products.reverse()
         quantity = self.request.query_params.get('quantity', None)
+        if quantity is not None:
+            products = products[:int(quantity)]
         
 
         serializer = Product_Serializer(
