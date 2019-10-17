@@ -142,6 +142,10 @@ class Products(ViewSet):
                     if count == length:
                         products = new_products
                         break
+                    
+        products = products.reverse()
+        quantity = self.request.query_params.get('quantity', None)
+        
 
         serializer = Product_Serializer(
             products, many=True, context={'request': request})
