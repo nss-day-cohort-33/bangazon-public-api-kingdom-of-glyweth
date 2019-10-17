@@ -22,4 +22,4 @@ class Product(SafeDeleteModel):
 
     @property
     def quantity_sold(self):
-        return self.order_product_set.filter(order__payment__isnull=False).count()
+        return self.cart.filter(order__payment__isnull=False).count()
