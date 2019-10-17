@@ -13,10 +13,13 @@ class Product(SafeDeleteModel):
     description = models.CharField(max_length = 300)
     product_category = models.ForeignKey(Product_Category, on_delete = models.CASCADE)
     quantity_available = models.IntegerField()
-    quantity_sold = models.IntegerField()
     date_created = models.DateField(null = True)
     image = models.ImageField(upload_to = None)
 
     class Meta:
         verbose_name = ("product")
         verbose_name_plural = ("products")
+
+    @property
+    def quantity_sold(self):
+        return self.order_product_set.filter(order__payment__isnull=False).count()
