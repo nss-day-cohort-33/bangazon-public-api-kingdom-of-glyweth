@@ -105,19 +105,16 @@ class Orders(ViewSet):
         Returns:
             Response -- JSON serialized list of orders
         """
-        order = Order.objects.all()
-        orders = Order.objects.all()
         customer = Customer.objects.get(user=request.auth.user)
 
         # Either send back all closed orders for the order history view, or the single open order to display in cart view
         cart = self.request.query_params.get('cart', None)
-        orders = orders.filter(customer_id=customer)
+        orders = Order.objects.filter(customer=customer, payment=None)
         if cart is not None:
-            order = order.filter(payment=None).get()
             serializer = Order_Serializer(
-                order, many=False, context={'request': request}
+                orders, many=False, context={'request': request}
               )
         else:
             serializer = Order_Serializer(
-                order, many=True, context={'request': request})
+                orders, many=True, context={'request': request})
         return Response(serializer.data)
