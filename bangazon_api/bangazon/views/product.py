@@ -145,10 +145,10 @@ class Products(ViewSet):
         quantity = self.request.query_params.get('quantity', None)
         if quantity is not None:
             products = products[:int(quantity)]
-        # else:
-        #     products = products
-            # if category is not None:
-            #     products = products.filter(product_category__id=category)
+        else:
+            products = products
+            if category is not None:
+                products = products.filter(product_category__id=category)
         
 
         serializer = Product_Serializer(
