@@ -12,9 +12,9 @@ class Product(SafeDeleteModel):
     price = models.DecimalField(max_digits = 100, decimal_places = 2)
     description = models.CharField(max_length = 300)
     product_category = models.ForeignKey(Product_Category, on_delete = models.CASCADE)
-    quantity_available = models.IntegerField()
+    quantity_available = models.IntegerField(null=True, blank=True)
     date_created = models.DateField(null = True)
-    image = models.ImageField(upload_to = None)
+    image = models.ImageField(upload_to = None, null=True)
 
     class Meta:
         verbose_name = ("product")
