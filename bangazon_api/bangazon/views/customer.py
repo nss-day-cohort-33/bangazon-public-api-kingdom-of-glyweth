@@ -80,15 +80,3 @@ class Customers(ViewSet):
         serializer = customer_serializer(
             customers, many=True, context={'request': request})
         return Response(serializer.data)
-        # except Exception as ex:
-        #     return HttpResponseServerError(ex)
-
-    # def list(self, request):
-    #     """Handles the get all request for the customers - Ben"""
-
-    #     customer = Customer.objects.all()
-
-    #     serializer = customer_serializer(
-    #         customer, many=True, context={'request': request}
-    #     )
-    #     return Response(serializer.data)

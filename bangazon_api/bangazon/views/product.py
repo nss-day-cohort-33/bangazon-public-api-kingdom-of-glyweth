@@ -19,7 +19,6 @@ class Product_Serializer(serializers.HyperlinkedModelSerializer):
         )
         fields = ('id', 'url', 'name', 'customer_id', 'price', 'description', 'product_category_id',
                   'quantity_available', 'quantity_sold', 'date_created', 'image' )
-        # depth = 1
 
 
 class Products(ViewSet):
@@ -42,7 +41,6 @@ class Products(ViewSet):
         new_product.description = request.data["description"]
         new_product.quantity_available = request.data["quantity_available"]
         new_product.quantity_sold = request.data["quantity_sold"]
-        # new_product.image = request.data.get["image", None]
         new_product.save()
 
         serializer = Product_Serializer(
