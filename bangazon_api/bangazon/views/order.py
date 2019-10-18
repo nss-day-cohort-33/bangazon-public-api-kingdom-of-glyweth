@@ -74,14 +74,6 @@ class Orders(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        # new_order = Order.objects.get(pk=pk)
-        # new_order.order_placed_date = request.data["order_placed_date"]
-        # payment = Payment.objects.get(pk=request.data["payment_id"])
-        # new_order.payment = payment
-        # customer = Customer.objects.get(pk=request.data["customer_id"])
-        # new_order.customer = customer
-        # new_order.save()
-
         order = Order.objects.get(pk=pk)
         if request.data["payment_id"]:
             print("wrong one")

@@ -37,13 +37,4 @@ def products_by_category(request):
 
                 all_products.append(product)
 
-        # template_name = 'departments/list.html'
-
-        # context = {
-        #     'all_products': all_products
-        # }
-        # Berkley and I learned that we needed to create this in the back end about 45mins
-        # before we needed to close out work for the day. Hopefully we can pick it back up
-        # quickly when we start the second sprint for this project.
-
         return render(request, template_name, context)
