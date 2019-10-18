@@ -9,7 +9,6 @@
           "description": "Lovely book by Stephen King, also includes several bones with order",
           "product_category_id": 1,
           "quantity_available": 1,
-          "quantity_sold": 0,
           "date_created": "2019-10-03",
           "image": null
         }
@@ -24,7 +23,6 @@
           "description": "Book about lies, caution will turn you into a liar",
           "product_category_id": 1,
           "quantity_available": 10,
-          "quantity_sold": 1,
           "date_created": "2019-09-03",
           "image": null
         }
@@ -38,8 +36,7 @@
           "price": 398.01,
           "description": "Big boots for boys and girls",
           "product_category_id": 2,
-          "quantity_available": 5,
-          "quantity_sold": 0,
+          "quantity_available": 10,
           "date_created": "2019-10-01",
           "image": null
         }
@@ -54,7 +51,6 @@
           "description": "A super sweet beanie, for the hipster in you.  Definintely wearable in summer",
           "product_category_id": 2,
           "quantity_available": 99,
-          "quantity_sold": 0,
           "date_created": "2019-10-01",
           "image": null
         }
@@ -69,7 +65,6 @@
           "description": "Just a normal broom, unless mickey mouse is around",
           "product_category_id": 3,
           "quantity_available": 4,
-          "quantity_sold": 2,
           "date_created": "2019-10-01",
           "image": null
         }
@@ -84,7 +79,6 @@
           "description": "Just a normal broom, unless mickey mouse is around",
           "product_category_id": 3,
           "quantity_available": 4,
-          "quantity_sold": 2,
           "date_created": "2019-10-01",
           "image": null
         }
@@ -99,7 +93,6 @@
           "description": "Large boombox that has the best speakers in the world",
           "product_category_id": 4,
           "quantity_available": 4,
-          "quantity_sold": 0,
           "date_created": "2019-10-01",
           "image": null
         }
@@ -114,7 +107,6 @@
           "description": "Straight from the motherland",
           "product_category_id": 4,
           "quantity_available": 19,
-          "quantity_sold": 10,
           "date_created": "2019-10-01",
           "image": null
         }
