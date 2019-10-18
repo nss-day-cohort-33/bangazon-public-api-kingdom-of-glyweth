@@ -28,5 +28,15 @@
           "address": "1234 ideclare",
           "city": "Nashville"
         }
+    },
+    {
+        "model": "bangazon.customer",
+        "pk": 4,
+        "fields": {
+          "user_id": 5,
+          "phone_number": "555-555-2345",
+          "address": "1234 ideclare",
+          "city": "Nashville"
+        }
     }
 ]

@@ -46,5 +46,21 @@
           "date_joined": "2019-10-04 19:00:32.229001",
           "last_name": "Jacobs"
         }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+          "password": "pbkdf2_sha256$150000$2O7rZWjY9Xli$sGMJlbT46lfmx/W5b3x7AW0bxrElOMB/ctzSQe3ETjg=",
+          "last_login": null,
+          "is_superuser": 0,
+          "username": "Joe",
+          "first_name": "Susan",
+          "email": "joe@joe.com",
+          "is_staff": 0,
+          "is_active": 1,
+          "date_joined": "2019-10-04 19:00:32.229001",
+          "last_name": "joe"
+        }
     }
 ]

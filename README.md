@@ -1,6 +1,7 @@
 ## Bangazon API
 
-Built using Python, Django, and the Django REST Framework for serving data to the client via HTTP
+Built using Python, Django, and the Django REST Framework for serving data to the
+[client-side application](https://github.com/nss-day-cohort-33/bangazon-client-application-kingdom-of-glyweth) via HTTP
 
 The resources currently within the database are:
 
@@ -21,8 +22,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 1. Clone down this repository and cd into it.
-2. Once inside this repository, cd into bangazon_api and open your code editor
-3. Create your virtual environment
+2. Once inside this repository, cd into `bangazon_api` and open your VSCode here with
+`code .`
+1. Create your virtual environment
 ```
 python -m venv bangazonenv
 ```
@@ -32,9 +34,9 @@ source ./bangazonenv/bin/activate
 ```
 * Start virtual environment on Windows
 ```
-source ./bangazonenv/Source/activate
+source ./bangazonenv/Scripts/activate
 ```
-5. `cd ..` You should be in a directory containing `requirements.txt`
+5. Run `cd ..` You should be in a directory containing `requirements.txt`
 6. Install the app's dependencies:
 ```
 pip install -r requirements.txt
