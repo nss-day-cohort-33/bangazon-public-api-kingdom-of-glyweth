@@ -104,7 +104,7 @@ class Products(ViewSet):
         Returns:
             Response -- JSON serializer list of products
         """
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('-id')
         product_list = []
 
         product_category = self.request.query_params.get(
@@ -140,6 +140,16 @@ class Products(ViewSet):
                     if count == length:
                         products = new_products
                         break
+                    
+        # products = products.reverse()
+        quantity = self.request.query_params.get('quantity', None)
+        if quantity is not None:
+            products = products[:int(quantity)]
+        else:
+            products = products
+            if category is not None:
+                products = products.filter(product_category__id=category)
+        
 
         serializer = Product_Serializer(
             products, many=True, context={'request': request})
