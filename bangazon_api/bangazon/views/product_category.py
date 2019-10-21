@@ -109,7 +109,7 @@ class Product_Categories(ViewSet):
         limit = self.request.query_params.get('limit', None)
         if limit is not None:
             for category in categories:
-                related_products = Product.objects.filter(product_category=category)
+                related_products = Product.objects.filter(product_category=category).order_by('-id')
                 category.products = list(related_products)[:3]
             serializer = Product_Category_Serializer(
             categories, many=True, context={'request': request})

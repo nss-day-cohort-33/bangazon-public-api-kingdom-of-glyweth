@@ -104,7 +104,7 @@ class Products(ViewSet):
         Returns:
             Response -- JSON serializer list of products
         """
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('-id')
         product_list = []
 
         product_category = self.request.query_params.get(
