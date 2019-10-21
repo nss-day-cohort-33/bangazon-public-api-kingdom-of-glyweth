@@ -4,9 +4,26 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from bangazon.models import Product_Category
+from bangazon.models import Product_Category, Product
+from .product import Product_Serializer
 
 class Product_Category_Serializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for product category
+
+    Arguments:
+        serializers
+    """
+    products = Product_Serializer(many=True)
+    class Meta:
+        model = Product_Category
+        url = serializers.HyperlinkedIdentityField(
+            view_name='product_category',
+            lookup_field='id'
+        )
+        fields = ('id', 'name', 'products')
+        depth = 2
+        
+class Pure_Product_Category_Serializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for product category
 
     Arguments:
@@ -19,6 +36,7 @@ class Product_Category_Serializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'name')
+        depth = 2
 
 class Product_Categories(ViewSet):
     """Product categories for Bangazon"""
@@ -86,11 +104,22 @@ class Product_Categories(ViewSet):
         Returns:
             Response -- JSON serialized list of orders
         """
-        category = Product_Category.objects.all()
+        categories = Product_Category.objects.all()
+        
+        limit = self.request.query_params.get('limit', None)
+        if limit is not None:
+            for category in categories:
+                related_products = Product.objects.filter(product_category=category)
+                category.products = list(related_products)[:3]
+            serializer = Product_Category_Serializer(
+            categories, many=True, context={'request': request})
+        else:
+            serializer = Pure_Product_Category_Serializer(
+            categories, many=True, context={'request': request})
+            
+                
 
        
 
-        serializer = Product_Category_Serializer(
-            category, many=True, context={'request': request})
         return Response(serializer.data)
 
